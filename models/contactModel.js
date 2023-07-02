@@ -1,6 +1,5 @@
 const { Schema, model } = require("mongoose");
-const handleMongooseError = require("../middlewares/handleMongooseError");
-const Joi = require("joi");
+const  handleMongooseError  = require("../middlewares/handleMongooseError");
 
 const contactSchema = new Schema(
   {
@@ -35,17 +34,21 @@ const contactSchema = new Schema(
 
 contactSchema.post("save", handleMongooseError);
 
-const addContactSchema = Joi.object({
-  name: Joi.string().required(),
-  email: Joi.string().required(),
-  phone: Joi.string().min(7).max(15).required(),
-  favorite: Joi.boolean(),
-});
+// const Joi = require("joi");
 
-const updateContactSchema = Joi.object({
-  favorite: Joi.boolean().required(),
-});
+// const addContactSchema = Joi.object({
+//   name: Joi.string().required(),
+//   email: Joi.string().required(),
+//   phone: Joi.string().min(7).max(15).required(),
+//   favorite: Joi.boolean(),
+// });
+
+// const updateContactSchema = Joi.object({
+//   favorite: Joi.boolean().required(),
+// });
+
+// module.exports = { addContactSchema, updateContactSchema };
 
 const Contact = model("contact", contactSchema);
 
-module.exports = { Contact, addContactSchema, updateContactSchema };
+module.exports = Contact;

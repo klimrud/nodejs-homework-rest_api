@@ -7,7 +7,7 @@ const {
   isValidId,
   authenticate,
 } = require("../../middlewares");
-const { addContactSchema, updateContactSchema } = require("../../models");
+const { addContactSchema, updateContactSchema } = require("../../schemas");
 const { contacts: ctrl } = require("../../controllers");
 
 const validateMiddlewareAdd = validation(addContactSchema);
