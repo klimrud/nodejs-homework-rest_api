@@ -3,10 +3,12 @@ const express = require("express");
 const {
   validation,
   validationFavorite,
-  ctrlWrapper,
   isValidId,
+  ctrlWrapper,
   authenticate,
 } = require("../../middlewares");
+
+// const {ctrlWrapper} = require("../helpers/ctrlWrapper");
 const { addContactSchema, updateContactSchema } = require("../../models");
 const { contacts: ctrl } = require("../../controllers");
 
