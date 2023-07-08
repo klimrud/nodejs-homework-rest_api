@@ -1,5 +1,5 @@
 const { Schema, model } = require("mongoose");
-const handleMongooseError = require("../middlewares/handleMongooseError");
+const handleMongooseError = require("../helpers/handleMongooseError");
 const Joi = require("joi");
 
 const userSchema = new Schema(
@@ -22,10 +22,18 @@ const userSchema = new Schema(
       type: String,
       default: "",
     },
-    avatarURL:{ 
+    avatarURL: {
       type: String,
       required: true,
-    }
+    },
+    verify: {
+      type: Boolean,
+      default: false,
+    },
+    verificationToken: {
+      type: String,
+      required: [true, 'Verify token is required'],
+    },
   },
   {
     versionKey: false,
@@ -45,8 +53,14 @@ const loginSchema = Joi.object({
   password: Joi.string().min(6).required(),
 });
 
+const userEmailSchema = Joi.object({
+  email: Joi.string().required(),
+});
+
+
 const schemas = {
   registerSchema,
+  userEmailSchema,
   loginSchema,
 };
 
